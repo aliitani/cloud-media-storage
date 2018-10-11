@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ViewMediaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ medias['title'] }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>
+        <ion-thumbnail><img [src]="medias['thumbnail']"/></ion-thumbnail>
+      </ion-col>
+      <ion-col col-8>
+        <ion-title> {{ medias['title'] }}</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-title>Media: </ion-title>
+    </ion-row>
+    <ion-row>
+      <ion-col col-10 pull-1 push-1>
+        <embed [src]="mediaURL" class="embeded-media">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-title>External Link: </ion-title>
+    </ion-row>
+    <ion-row>
+      <button full block large ion-button color="secondary" (click)="viewExternal(medias['link'])">View External</button>
+    </ion-row>
+    <ion-row>
+      <ion-title>Description: </ion-title>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <p>{{ medias['description'] }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button full large block color="primary" (click)="editMedia(medias)" style="margin-top: 2em;"><ion-icon name="brush"></ion-icon> Edit</button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

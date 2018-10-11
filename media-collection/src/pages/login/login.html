@@ -1,0 +1,44 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title >Local Media Collection: Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-title>
+      Your go to for your local media collection!
+      </ion-title>
+    </ion-row>
+    <form ngForm="loginForm" novalidate (ngSubmit)="logIn(user)">
+      <ion-row>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" [(ngModel)]="user.email" name="email" required></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" minlength="6" name="password" required></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row style="margin-top: 2em;">
+        <button ion-button block large  type="submit">Log In</button>
+      </ion-row>
+    </form>
+    <ion-row>
+      <button ion-button color="light" large full (click)="register()">Register</button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

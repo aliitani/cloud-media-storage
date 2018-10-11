@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-row>
+      <ion-title>
+        Local Media Collection: Home
+      </ion-title>
+      <button ion-button color="light" clear (click)="presentPopover($event)">
+        <ion-icon name="more" clear></ion-icon>
+      </button>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-title>Hello, {{ userEmail }}</ion-title>
+  <ion-item-divider>
+    <ion-row>
+      <button ion-button color="secondary" full (click)="switch()" [(innerHTML)]="viewMode"></button>
+    </ion-row>
+    <p>While in List Mode: Swipe left or right on media for more options.</p>
+  </ion-item-divider>
+  <div *ngIf="medias.length === 0" class="empty-media">
+    <ion-title>No media added yet</ion-title>
+  </div>
+  <div *ngIf="gridView; else list">
+    <div *ngFor="let media of medias">
+      <ion-card>
+        <img [src]="media.thumbnail" [alt]="media.title"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{ media.title }}
+          </ion-card-title>
+          <p>
+            {{ media.description }}
+          </p>
+          <ion-row>
+            <button ion-button color="primary" col-3 item-start (click)="viewMedia(media)">
+              <ion-icon name="open"> </ion-icon>
+              View
+            </button>
+            <button ion-button color="secondary" col-3 (click)="editMedia(media)">
+              <ion-icon name="brush"> </ion-icon>
+              Edit
+            </button>
+            <button ion-button color="danger" item-end col-3 (click)="deleteMedia(media)">
+              <ion-icon name="trash"> </ion-icon>
+              Delete
+            </button>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <ng-template #list>
+    <ion-list *ngFor="let media of medias">
+      <ion-item-sliding>
+
+        <ion-item (click)="viewMedia(media)">
+          <ion-thumbnail item-start>
+            <img [src]="media.thumbnail" [alt]="media.title"/>
+          </ion-thumbnail>
+          <h2>{{ media.title }}</h2>
+          <p>{{ media.description }}</p>
+        </ion-item>
+
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteMedia(media)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+
+        <ion-item-options side="left">
+          <button ion-button color="secondary" (click)="editMedia(media)">
+            <ion-icon name="create"></ion-icon>
+            Edit
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ng-template>
+
+  <ion-fab right bottom>
+      <button ion-fab color="primary" (click)="addMedia()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
